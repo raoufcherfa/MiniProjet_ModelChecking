@@ -18,10 +18,10 @@ C’est le résultat du travail qui nous a permis de réaliser un Algorithme don
 
 Ce projet contients 4 classe En cpp : 
 
-- expressionAnalyseur : une classe qui contient la structure de l'arbre et plusieurs fonctions qui nous permets d'analyser les expression.
-- etatMachine : une classe qui contient la fonction qui nous permet de lire l'état de la machine (de l'expression).
-- appelerOperation : une classe qui contient les fonctions qui permet d'appeler les operation sur le graphe.
-- mainModelChechking : une classe main qui a pour but d'excuter l'ensemble de projet.
+- **expressionAnalyseur** : une classe qui contient la structure de l'arbre et plusieurs fonctions qui nous permetent d'analyser les expressions(**commentaire pour l'utilité de chacune d'entre elle**).
+- **etatMachine** : une classe qui contient la fonction qui nous permet de lire l'état de la machine (de l'expression).
+- **appelerOperation** : une classe qui contient les fonctions qui permet d'appeler les operation sur le graphe.
+- **mainModelChechking** : une classe main qui a pour but d'excuter l'ensemble de projet.
 ## Instruction d'excution:
 
 ####	Ajouter un fichier test :
@@ -36,7 +36,7 @@ Ce projet contients 4 classe En cpp :
 	
 ### Pour excuter le projet 
 	 
-	make run IN="fichier" 
+	make run IN="fichier"  (**IN="test.txt"** pour notre exemple) 
 
 ## Exemple d'excution et Résultats
 
