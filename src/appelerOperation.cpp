@@ -3,6 +3,11 @@
 using namespace std;
 
 
+/***
+Fonction pour ajouter une propriété de l'arborescence sur le graphe
+entrée: graphe et propriété
+***/
+
 void opAdd (vector<graphNoeud_t> &graph, string valeur) {
 
 	for (int i = 0; i < (int)graph.size(); ++i) {
@@ -11,17 +16,23 @@ void opAdd (vector<graphNoeud_t> &graph, string valeur) {
 		}
 	}
 }
-
+/***
+Fonction pour ajouter une propriété de a et b dans le graphe
+entrée: graphe, a, b et la propriété (a et b)
+***/
 
 void opAnd (vector<graphNoeud_t> &graph, string a, string b, string valeur) {
-	
+
 	for (int i = 0; i < (int)graph.size(); ++i) {
 		if (graph[i].noeuds.count(a) && graph[i].noeuds.count(b)) {
 			graph[i].noeuds[valeur] = true;
 		}
 	}
 }
-
+/***
+Fonction pour ajouter une propriété de a ou b dans le graphe
+entrée: graphe, a, b et la propriété (a ou b)
+***/
 
 void opOr (vector<graphNoeud_t> &graph, string a, string b, string valeur) {
 
@@ -35,7 +46,10 @@ void opOr (vector<graphNoeud_t> &graph, string a, string b, string valeur) {
 	}
 }
 
-
+/***
+Fonction pour ajouter une propriété de  Non a dans le graphe
+entrée: graphe, a, b et la propriété (Non a)
+***/
 void opNot (vector<graphNoeud_t> &graph, string a, string valeur) {
 
 	for (int i = 0; i < (int)graph.size(); ++i) {
@@ -45,6 +59,12 @@ void opNot (vector<graphNoeud_t> &graph, string a, string valeur) {
 	}
 }
 
+/***
+Fonction pour ajouter une propriété de EX (a) sur le graphe
+input: graphe, a et la propriété EX (a)
+				Rechercher les nœuds qui ont un nœud suivant avec la propriété a
+						et insérez la valeur de propriété sur ces nœuds
+***/
 
 void opEX (vector<graphNoeud_t> &graph, string a, string valeur) {
 
@@ -59,6 +79,14 @@ void opEX (vector<graphNoeud_t> &graph, string a, string valeur) {
 		}
 	}
 }
+
+/***
+Fonction pour ajouter une propriété de EU (a, b) dans le graphe
+input: graphe, a, b et la propriété EU (a, b)
+Rechercher les nœuds qui ont la propriété b et insérez la valeur de propriété sur ces nœuds
+Ensuite, recherchez les nœuds qui ont la propriété a et un nœud suivant avec la valeur de propriété
+et insérez la valeur de la propriété sur ces nœuds, de manière récursive
+***/
 
 
 void opEU (vector<graphNoeud_t> &graph, string a, string b, string valeur) {
@@ -86,6 +114,14 @@ void opEU (vector<graphNoeud_t> &graph, string a, string b, string valeur) {
 	}
 }
 
+
+/***
+Fonction pour ajouter une propriété de AF (a) dans le graphe
+entrée: graphe, a et la propriété AF (a)
+Rechercher les nœuds qui ont la propriété a et insérez la valeur de propriété sur ces nœuds
+Ensuite, recherchez les nœuds qui ont tous les nœuds voisins avec la valeur de propriété
+et insérez la valeur de la propriété sur ces nœuds, de manière récursive
+***/
 
 void opAF (vector<graphNoeud_t> &graph, string a, string valeur) {
 
@@ -117,31 +153,37 @@ void opAF (vector<graphNoeud_t> &graph, string a, string valeur) {
 	}
 }
 
+
+/***
+Fonction pour appeler la bonne opération pour une expression donnée
+entrée: arbre d'expression, machine d'état
+***/
+
 void appelerOperation(noeudArbre_t *noeud, vector<graphNoeud_t> &graph){
 
-	stack<noeudArbre_t*> origNoeuds;
+    stack<noeudArbre_t*> origNoeuds;
     origNoeuds.push(noeud);
- 
-    stack<noeudArbre_t*> postNoeuds; 
+
+    stack<noeudArbre_t*> postNoeuds;
     noeudArbre_t* aux;
-   
+
     while (!origNoeuds.empty())
     {
         noeudArbre_t *current = origNoeuds.top();
         origNoeuds.pop();
- 
-        postNoeuds.push(current); 
-        
+
+        postNoeuds.push(current);
+
         if (current->gauche)
             origNoeuds.push(current->gauche);
- 
+
         if (current->droite)
             origNoeuds.push(current->droite);
     }
- 
+
     while (!postNoeuds.empty())
-    {		
-	    aux = postNoeuds.top();  
+    {
+	    aux = postNoeuds.top();
 
 		if(aux->type == "function"){
 
@@ -168,8 +210,8 @@ void appelerOperation(noeudArbre_t *noeud, vector<graphNoeud_t> &graph){
 		}
 		else{
 			opAdd(graph, aux->contenu);
-		}	
+		}
 
-	    postNoeuds.pop();    	
-    }	
+	    postNoeuds.pop();
+    }
 }
