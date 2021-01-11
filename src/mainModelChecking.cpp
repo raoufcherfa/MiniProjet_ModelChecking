@@ -4,9 +4,12 @@
 
 using namespace std;
 
-
+/***
+Fonction pour imprimer le résultat de l'expression appliquée dans la machine à états
+entrée: machine à états, expression modifiée, expression originale
+***/
 void afficherResultat(vector<graphNoeud_t> &graph, string expression, string initExpression){
-	
+
 	cout << "Expression: " << initExpression << "\n";
 	cout << "Etats: ";
 
