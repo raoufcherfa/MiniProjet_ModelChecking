@@ -45,15 +45,15 @@ Ce projet contients 4 classe En cpp :
 
 oû 
 <ol>
-<li>La première ligne a la valeur de **totLines**  non nul décrivant les états totaux de notre machine à états</li>
+<li>La première ligne a la valeur de <strong>totLines</strong>  non nul décrivant les états totaux de notre machine à états</li>
 <li>
-	Les lignes suivantes **totLinhas** auront les éléments suivants séparés par un espace
+	Les lignes suivantes <strong>totLinhas</strong> auront les éléments suivants séparés par un espace
 	<ul>
 	<li>Identificateur d'état unique (type entier)</li>
 	<li>Total totProps des propriétés (type entier)</li>
-	<li>Séquence de chaînes **totProps** représentant les étiquettes des propriétés données comme identificateurs valides, séparées par un espace</li>
-	<li>Nombre total d'états **totProxEstad** à venir (type entier)</li>
-	<li>Séquence d'identificateurs **totProxEstad** valide des états suivants, séparés par un espace</li>
+	<li>Séquence de chaînes <strong>totProps</strong> représentant les étiquettes des propriétés données comme identificateurs valides, séparées par un espace</li>
+	<li>Nombre total d'états <strong>totProxEstad</strong> à venir (type entier)</li>
+	<li>Séquence d'identificateurs <strong>totProxEstad</strong> valide des états suivants, séparés par un espace</li>
 	</ul>
 </li>
 <li>La dernière ligne doit inclure l'expression CTL à vérifier.</li>
