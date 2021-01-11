@@ -3,6 +3,11 @@
 using namespace std;
 
 
+/***
+Fonction de lecture de l'entrée
+sortie: la machine d'état
+***/
+
 vector<graphNoeud_t> lireEtatMachine() {
 
 	graphNoeud_t g;
@@ -41,7 +46,7 @@ vector<graphNoeud_t> lireEtatMachine() {
 
 			g.next.push_back(etat - 1);
 		}
-		
+
 		v[g.id - 1] = g;
 
 		g.proprietes.clear();
