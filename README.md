@@ -16,7 +16,9 @@ C’est le résultat du travail qui nous a permis de réaliser un Algorithme don
 
 ## Descreption des classes :
 
-Ce projet contients 4 classe En cpp : une classe qui contient la structure de l'arbre et plusieurs fonctions qui nous permets d'analyser les expression.
+Ce projet contients 4 classe En cpp : 
+
+- expressionAnalyseur : une classe qui contient la structure de l'arbre et plusieurs fonctions qui nous permets d'analyser les expression.
 - etatMachine : une classe qui contient la fonction qui nous permet de lire l'état de la machine (de l'expression).
 - appelerOperation : une classe qui contient les fonctions qui permet d'appeler les operation sur le graphe.
 - mainModelChechking : une classe main qui a pour but d'excuter l'ensemble de projet.
