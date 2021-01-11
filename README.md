@@ -9,7 +9,7 @@
 ## Introduction:
 
 Ce document a pour but de décrire le déroulement de notre mini-projet d'un model checker pour la logique CTL ( l’algorithme du model Checking ).
-Dans le cadre de notre module Systéme complexe on a réalisé en language C++ un projet qui a pout but d'eavluer une expression ctl sur un graphe donné en respectant plusieurs instructions.
+Dans le cadre de notre module Systéme complexe on a réalisé en language C++ un projet qui a pout but d'eavluer une expression ctl sur un graphe donné en respectant plusieurs instructions.</br>
 les entrées et sortie :
 - Un model checker CTL ayant comme entrée un fichier contenant une description textuelle d'une structure une formule CTL. 
 - En sortie, on a une réponse quand à la satisfaction de la formule donnée par le système.
