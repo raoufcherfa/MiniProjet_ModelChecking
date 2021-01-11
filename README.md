@@ -29,21 +29,6 @@ Ce projet contients 4 classe En cpp :
 
 ![testFile Image (Login!)](/images/exemplefile.png "exemple file")
 
-
-####	Pour compiler le programme
-
-	make
-	
-### Pour excuter le projet 
-	 
-	make run IN="fichier"
-(**IN="test.txt"** pour notre exemple) 
-
-## Exemple d'excution et Résultats
-
-![sortie Image (Login!)](/images/exec.png "exemple file")
-
-oû 
 <ol>
 <li>La première ligne a la valeur de <strong>totLines</strong>  non nul décrivant les états totaux de notre machine à états</li>
 <li>
@@ -58,4 +43,19 @@ oû
 </li>
 <li>La dernière ligne doit inclure l'expression CTL à vérifier.</li>
 </ol>
+
+####	Pour compiler le programme
+
+	make
+	
+### Pour excuter le projet 
+	 
+	make run IN="fichier"
+(**IN="test.txt"** pour notre exemple) 
+
+## Exemple d'excution et Résultats
+
+![sortie Image (Login!)](/images/exec.png "exemple file")
+
+
 
