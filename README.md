@@ -36,7 +36,8 @@ Ce projet contients 4 classe En cpp :
 	
 ### Pour excuter le projet 
 	 
-	make run IN="fichier"  (**IN="test.txt"** pour notre exemple) 
+	make run IN="fichier"
+(**IN="test.txt"** pour notre exemple) 
 
 ## Exemple d'excution et Résultats
 
