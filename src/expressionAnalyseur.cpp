@@ -4,6 +4,10 @@
 using namespace std;
 
 
+/***
+Fonction pour obtenir la propriété d'une expression donnée
+entrée: expression, position de propriété
+***/
 string getProp(string expression, int pos) {
 	string resultat = "(";
 	int niveau = 1;
@@ -15,6 +19,11 @@ string getProp(string expression, int pos) {
 	return resultat;
 }
 
+
+/***
+Fonction pour obtenir la fonction actuelle à partir d'une expression donnée
+entrée: expression, position de la fonction
+***/
 string getFunction(string expression, int pos){
 	string resultat = "";
 	while(expression[pos] != '('){
@@ -25,16 +34,24 @@ string getFunction(string expression, int pos){
 }
 
 
+/***
+Fonction pour vérifier si l'expression courante est une fonction (TRUE) ou une propriété (FALSE)
+entrée: expression, position à vérifier
+***/
 bool isFunction(string expression, int pos) {
 	while(expression[pos] != '('){
-		if (expression[pos] == ')') 
+		if (expression[pos] == ')')
 			return false;
 		pos++;
 	}
 	return true;
 }
 
-
+/***
+Fonction pour obtenir la position de la fonction à partir d'une expression donnée. Renvoie (-1) si l'expression
+est une propriété
+entrée: expression
+***/
 int findFunction(string expression){
 	int niveau = 0;
 	for (int i = 0; i < (int)expression.length(); ++i) {
@@ -46,52 +63,71 @@ int findFunction(string expression){
 }
 
 
+/***
+Fonction pour transformer AX (p) en !EX (!P)
+entrée: p
+***/
 string ax2ex(string p){
 	string resultat = "(!(EX(!";
 	resultat += p;
-	resultat += ")))"; 
+	resultat += ")))";
 	return resultat;
 }
 
-
+/***
+Fonction pour transformer EF (p) en EU (True,p)
+entrée: p
+***/
 string ef2eu(string p){
 	string resultat = "(EU((TRUE),";
 	resultat += p;
-	resultat += "))"; 
+	resultat += "))";
 	return resultat;
 }
 
-
+/***
+Fonction pour transformer AG (p) en !EU (True,!p)
+entrée: p
+***/
 string ag2eu(string p){
 	string resultat = "(!(EU((TRUE),(!";
 	resultat += p;
-	resultat += "))))"; 
+	resultat += "))))";
 	return resultat;
 }
 
-
+/***
+Fonction pour transformer EG (p) en !AF (!P)
+entrée: p
+***/
 string eg2af(string p){
 	string resultat = "(!(AF(!";
 	resultat += p;
-	resultat += ")))"; 
+	resultat += ")))";
 	return resultat;
 }
 
-
+/***
+Fonction pour transformer AU (p,q) en AF(q) & !EU(q, !q & !p)
+entrée: p,q
+***/
 string au2afeu(string gauche, string droite){
 	string resultat = "((AF";
 	resultat += droite;
-	resultat += ")&(!(EU((!"; 
+	resultat += ")&(!(EU((!";
 	resultat += droite;
-	resultat += "),((!"; 	
+	resultat += "),((!";
 	resultat += gauche;
-	resultat += ")&(!"; 	
+	resultat += ")&(!";
 	resultat += droite;
-	resultat += "))))))"; 
+	resultat += "))))))";
 	return resultat;
 }
 
-
+/***
+Fonction pour transformer p->q en !p | q
+entrée: p,q
+***/
 string impl2or(string gauche, string droite){
 	string resultat = "((!";
 	resultat += gauche;
@@ -101,7 +137,10 @@ string impl2or(string gauche, string droite){
 	return resultat;
 }
 
-
+/***
+Fonction pour transformer p<->q en (!p | q) & (!q | p)
+entrée: p,q
+***/
 string if2and(string gauche, string droite){
 	string resultat = "(((!";
 	resultat += gauche;
@@ -115,7 +154,10 @@ string if2and(string gauche, string droite){
 	return resultat;
 }
 
-
+/***
+Fonction à transformer (p) en p (sans parenthèses)
+entrée: p
+***/
 string removeParenthesisInLeaf(string leaf){
 	string resultat = "";
 	for(int i = 1; i < (int)leaf.length()-1; ++i){
@@ -125,6 +167,10 @@ string removeParenthesisInLeaf(string leaf){
 }
 
 
+/***
+Fonction pour libérer l'arbre alloué
+entrée: arbre
+***/
 void cleanArbre(noeudArbre_t *noeud){
 	if(noeud == NULL) return;
 	cleanArbre(noeud->gauche);
@@ -133,10 +179,14 @@ void cleanArbre(noeudArbre_t *noeud){
 }
 
 
+/***
+Fonction pour analyser l'expression CTL dans un arbre
+entrée: expression
+***/
 noeudArbre_t* parserCtlExpression(string expression) {
 	string gauche, droite;
 	noeudArbre_t *noeud = new noeudArbre_t();
-	
+
 	int posFunc = findFunction(expression);
 	if (posFunc == -1){
 		noeud->contenu = removeParenthesisInLeaf(expression);
@@ -156,7 +206,7 @@ noeudArbre_t* parserCtlExpression(string expression) {
 		expression = ax2ex(gauche);
 		fonction = "!";
 		posFunc = 1;
-	} 
+	}
 	else if(fonction == "EF"){
 		posFunc += 2;
 		gauche = getProp(expression, posFunc);
@@ -227,7 +277,7 @@ noeudArbre_t* parserCtlExpression(string expression) {
 		gauche = getProp(expression, posFunc);
 
 		noeud->contenu = expression;
-		noeud->type = "fonction";	
+		noeud->type = "fonction";
 		noeud->op = fonction;
 		noeud->gauche = parserCtlExpression(gauche);
 		noeud->droite = NULL;
