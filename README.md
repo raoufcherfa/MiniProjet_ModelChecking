@@ -22,11 +22,14 @@ Ce projet contients 4 classe En cpp : une classe qui contient la structure de l'
 - mainModelChechking : une classe main qui a pour but d'excuter l'ensemble de projet.
 ## Instruction d'excution:
 
-### Ajouter un fichier test :
+####	Ajouter un fichier test :
+
 
 ![testFile Image (Login!)](/images/exemplefile.png "exemple file")
 
-### Pour compiler le programme 
+
+####	Pour compiler le programme
+
 	make
 	
 ### Pour excuter le projet 
